@@ -3,6 +3,7 @@
     class="kai-list-item"
     @click="$emit('click')"
     :style="backgroundColorStyle"
+    :class="backgroundVariantClass"
   >
     <div class="kai-list-item__wrapper">
       <div class="kai-list-item__wrapper__icon-left">
@@ -12,11 +13,15 @@
       <div class="kai-list-item__wrapper__content">
         <div
           class="kai-list-item__wrapper__content__title"
-          :style="textColorStyle"
+          :style="titleColorStyle"
         >
           {{ title }}
         </div>
-        <div class="kai-list-item__wrapper__content__subtitle">
+        <div
+          class="kai-list-item__wrapper__content__subtitle"
+          :class="textVariantClass"
+          :style="subtitleColorStyle"
+        >
           {{ subtitle }}
         </div>
       </div>
@@ -46,20 +51,48 @@ export default {
       type: String
     },
 
-    textColor: {
+    titleTextColor: {
       type: String
+    },
+
+    subtitleTextColor: {
+      type: String
+    },
+
+    isActive: {
+      type: Boolean
     }
   },
 
   computed: {
+    backgroundVariantClass() {
+      if (this.isActive) {
+        return { "kai-list-item--active": true };
+      }
+      return {};
+    },
+
+    textVariantClass() {
+      if (this.isActive) {
+        return { "kai-list-item__wrapper__content__subtitle--active": true };
+      }
+      return {};
+    },
+
     backgroundColorStyle() {
       let backgroundColorStyle = { "background-color": this.backgroundColor };
       return backgroundColorStyle;
     },
 
-    textColorStyle() {
+    titleColorStyle() {
       return {
-        color: this.textColor
+        color: this.titleTextColor
+      };
+    },
+
+    subtitleColorStyle() {
+      return {
+        color: this.subtitleTextColor
       };
     }
   }
@@ -109,6 +142,10 @@ export default {
       &__subtitle {
         font-size: 14px;
         color: @grey-text;
+
+        &--active {
+          color: @white-text;
+        }
       }
     }
 
@@ -121,6 +158,11 @@ export default {
       flex-direction: column;
       justify-content: center;
     }
+  }
+
+  &--active {
+    background-color: @accent-color;
+    color: @white-text;
   }
 }
 </style>
