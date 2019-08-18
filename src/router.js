@@ -5,6 +5,9 @@ import Header from "./views/Header.vue";
 import SoftwareKey from "./views/SoftwareKey.vue";
 import Button from "./views/Button.vue";
 import List from "./views/List.vue";
+import Separator from "./views/Separator.vue";
+import Progress from "./views/Progress.vue";
+import Dialog from "./views/Dialog.vue";
 
 Vue.use(Router);
 
@@ -34,6 +37,21 @@ export default new Router({
       path: "/list",
       name: "list",
       component: List
+    },
+    {
+      path: "/separator",
+      name: "separator",
+      component: Separator
+    },
+    {
+      path: "/progress",
+      name: "progress",
+      component: Progress
+    },
+    {
+      path: "/dialog",
+      name: "dialog",
+      component: Dialog
     }
   ]
 });
