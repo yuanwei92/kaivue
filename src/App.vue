@@ -5,6 +5,8 @@
 </template>
 
 <style lang="less">
+@import "less/main.less";
+
 html {
   font-size: 10px;
 }
@@ -14,8 +16,4 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-</style>
-
-<style lang="less">
-@import "less/main.less";
 </style>
