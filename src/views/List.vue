@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-    <kai-header title="List"></kai-header>
+    <kai-header title="List" is-fixed></kai-header>
 
     <div class="text is-secondary">
       One line list item
@@ -34,6 +34,42 @@
         </template>
       </kai-list-item>
     </kai-list>
+
+    <div class="text is-secondary mt-2">
+      Focused list item
+    </div>
+    <kai-list>
+      <kai-list-item title="Title" subtitle="Subtitle" is-active>
+        <template #right-icon>
+          <font-awesome-icon
+            style="color: #FFFFFF"
+            class="action-icon-color"
+            icon="chevron-right"
+          />
+        </template>
+      </kai-list-item>
+    </kai-list>
+
+    <div class="text is-secondary mt-2">
+      Custom color list item
+    </div>
+    <kai-list>
+      <kai-list-item
+        title="Title"
+        subtitle="Subtitle"
+        background-color="#cefc6a"
+        title-text-color="#85003e"
+        subtitle-text-color="#00818a"
+      >
+        <template #left-icon>
+          <font-awesome-icon
+            style="font-size: 32px; color: #000000;"
+            class="action-icon-color"
+            icon="user-circle"
+          />
+        </template>
+      </kai-list-item>
+    </kai-list>
   </div>
 </template>
 
@@ -52,7 +88,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.mt-2 {
-  margin-top: 2rem;
+@import "../less/main.less";
+
+.list {
+  padding-top: @header-height;
 }
 </style>
