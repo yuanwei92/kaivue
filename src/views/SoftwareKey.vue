@@ -1,6 +1,6 @@
 <template>
-  <div class="header">
-    <kai-header title="Software Key"></kai-header>
+  <div class="software-key">
+    <kai-header title="Software Key" is-fixed></kai-header>
 
     <div class="text is-secondary">
       Each software key may or may not appear depending on availability. Always
@@ -28,4 +28,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="less" scoped>
+@import "../less/main.less";
+
+.software-key {
+  padding-top: @header-height;
+}
+</style>
