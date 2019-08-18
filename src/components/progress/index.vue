@@ -6,7 +6,7 @@
     <div class="kai-progress__wrapper">
       <div
         class="kai-progress__wrapper__loading-bar kai-progress__wrapper__loading-bar--active"
-        :style="loadingBarActiveStyle"
+        :style="[loadingBarActiveStyle, loadingBarColorStyle]"
       ></div>
       <div
         class="kai-progress__wrapper__loading-bar kai-progress__wrapper__loading-bar--inactive"
@@ -29,6 +29,10 @@ export default {
     progress: {
       type: Number,
       default: 0
+    },
+
+    barColor: {
+      type: String
     }
   },
 
@@ -41,6 +45,11 @@ export default {
     loadingBarInactiveStyle() {
       let flexGrow = 100 - this.progress;
       let style = { "flex-grow": flexGrow };
+      return style;
+    },
+
+    loadingBarColorStyle() {
+      let style = { "background-color": this.barColor };
       return style;
     }
   }
@@ -57,6 +66,8 @@ export default {
   justify-content: center;
   padding: 0 1rem;
   box-sizing: border-box;
+  border-top: @hairline-border;
+  border-bottom: @hairline-border;
 
   &__message {
     font-size: 17px;
