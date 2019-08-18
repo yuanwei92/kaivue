@@ -19,10 +19,6 @@ export default {
       type: Boolean
     },
 
-    isDanger: {
-      type: Boolean
-    },
-
     backgroundColor: {
       type: String
     },
