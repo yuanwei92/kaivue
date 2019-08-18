@@ -1,6 +1,6 @@
 <template>
   <div class="button">
-    <kai-header></kai-header>
+    <kai-header title="Button" is-fixed></kai-header>
 
     <div class="text is-secondary">Default button</div>
     <kai-button>Default</kai-button>
@@ -33,4 +33,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="less" scoped>
+@import "../less/main.less";
+
+.button {
+  padding-top: @header-height;
+}
+</style>
