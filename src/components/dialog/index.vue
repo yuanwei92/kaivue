@@ -111,8 +111,7 @@ export default {
     &__message {
       padding: 1rem;
       background-color: white;
-      height: @separator-height;
-      line-height: @separator-height;
+      font-size: @secondary-text-size;
     }
 
     &__key {
