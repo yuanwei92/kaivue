@@ -1,5 +1,5 @@
 <template>
-  <div class="kai-button" @click="$emit('click')">
+  <div class="kai-button" :nav-selectable="true" @click="$emit('click')">
     <div
       class="kai-button__text"
       :class="backgroundColorClass"
@@ -70,9 +70,9 @@ export default {
     text-overflow: ellipsis;
   }
 
-  &--primary {
-    background-color: @button-background-color-accent !important;
-    color: @white-text;
+  &[nav-selected="true"] {
+    background-color: @accent-color;
+    color: #ffffff;
   }
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div
     class="kai-list-item"
+    :nav-selectable="true"
     @click="$emit('click')"
     :style="backgroundColorStyle"
     :class="backgroundVariantClass"
@@ -160,9 +161,12 @@ export default {
     }
   }
 
-  &--active {
+  &[nav-selected="true"] {
     background-color: @accent-color;
-    color: @white-text;
+
+    [class^="kai-list-item"] {
+      color: @white-text;
+    }
   }
 }
 </style>
