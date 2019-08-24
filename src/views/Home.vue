@@ -7,6 +7,7 @@
         v-for="component in components"
         :key="component.name"
         :title="component.name"
+        :subtitle="component.name"
         @click="onClickListItem(component)"
       >
         <template #right-icon>
@@ -14,11 +15,14 @@
         </template>
       </kai-list-item>
     </kai-list>
+
+    <kai-software-key middle-key="Select"></kai-software-key>
   </div>
 </template>
 
 <script>
-import { KaiHeader, KaiList, KaiListItem } from "@/components";
+import { KaiHeader, KaiList, KaiListItem, KaiSoftwareKey } from "@/components";
+import Navigation from "@/js/Navigation";
 
 export default {
   name: "home",
@@ -26,7 +30,8 @@ export default {
   components: {
     KaiHeader,
     KaiList,
-    KaiListItem
+    KaiListItem,
+    KaiSoftwareKey
   },
 
   data() {
@@ -52,8 +57,13 @@ export default {
     };
   },
 
-  created() {
-    document.addEventListener("keydown", this.handleKeyDown);
+  mounted() {
+    Navigation.init(this.$store.state.currentComponentIndex);
+    document.addEventListener("keydown", this.onKeyDown);
+  },
+
+  beforeDestroy() {
+    document.removeEventListener("keydown", this.onKeyDown);
   },
 
   methods: {
@@ -61,8 +71,27 @@ export default {
       this.$router.push(component.link);
     },
 
-    handleKeyDown(event) {
-      console.log(event);
+    onKeyDown(event) {
+      const self = this;
+      let selectedItem = Navigation.getCurrentItem();
+
+      switch (event.key) {
+        case "ArrowDown":
+          Navigation.Down();
+          break;
+
+        case "ArrowUp":
+          Navigation.Up();
+          break;
+
+        case "Enter":
+          self.$store.commit("setCurrentComponentIndex", selectedItem.index);
+          self.$router.push(self.components[selectedItem.index].link);
+          break;
+
+        default:
+          break;
+      }
     }
   }
 };
@@ -73,5 +102,6 @@ export default {
 
 .home {
   padding-top: @header-height;
+  height: calc(~"100vh - 58px");
 }
 </style>
