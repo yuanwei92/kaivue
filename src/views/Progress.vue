@@ -11,18 +11,42 @@
       Custom color
     </div>
     <kai-progress :progress="58" bar-color="#FF0000"></kai-progress>
+
+    <kai-software-key right-key="Back"></kai-software-key>
   </div>
 </template>
 
 <script>
-import { KaiHeader, KaiProgress } from "@/components";
+import { KaiHeader, KaiProgress, KaiSoftwareKey } from "@/components";
 
 export default {
   name: "Progress",
 
   components: {
     KaiHeader,
-    KaiProgress
+    KaiProgress,
+    KaiSoftwareKey
+  },
+
+  mounted() {
+    document.addEventListener("keydown", this.onKeyDown);
+  },
+
+  beforeDestroy() {
+    document.removeEventListener("keydown", this.onKeyDown);
+  },
+
+  methods: {
+    onKeyDown(event) {
+      switch (event.key) {
+        case "SoftRight":
+          this.$router.back();
+          break;
+
+        default:
+          break;
+      }
+    }
   }
 };
 </script>
