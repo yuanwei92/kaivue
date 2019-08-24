@@ -1,5 +1,5 @@
 <template>
-  <div class="kai-software-key">
+  <div class="kai-software-key safe-area-inset-bottom">
     <div class="kai-software-key-item" @click="$emit('click-left-key')">
       {{ leftKey }}
     </div>
@@ -37,7 +37,7 @@ export default {
 
   computed: {
     middleKeyUpperCase() {
-      return this.middleKey.toUpperCase();
+      return this.middleKey;
     }
   },
 
@@ -66,7 +66,6 @@ export default {
 
 .kai-software-key {
   display: flex;
-  width: 100%;
   font-size: @software-key-title-font-size;
   box-sizing: border-box;
   height: @software-key-height;
@@ -76,7 +75,9 @@ export default {
   position: fixed;
   bottom: 0;
   left: 0;
+  width: 100%;
   margin: 5 auto;
+  z-index: 1;
 
   &-item {
     width: 33.33%;
@@ -86,10 +87,10 @@ export default {
       text-transform: capitalize;
     }
   }
+}
 
-  &--safe-area-inset-bottom {
-    padding-bottom: constant(safe-area-inset-bottom);
-    padding-bottom: env(safe-area-inset-bottom);
-  }
+.safe-area-inset-bottom {
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 </style>
