@@ -1,8 +1,12 @@
 const init = index => {
+  [].forEach.call(getAllElements(), (element, index) => {
+    element.setAttribute("nav-index", index);
+  });
+
   const selectedElement =
     index == null ? getAllElements()[0] : getAllElements()[index];
   selectedElement.setAttribute("nav-selected", "true");
-  selectedElement.setAttribute("nav-index", "0");
+  selectedElement.setAttribute("nav-index", index == null ? 0 : index);
   selectedElement.focus();
 
   if (!isElementInViewport(selectedElement)) {
@@ -16,6 +20,9 @@ const getCurrentElement = () => document.querySelector("[nav-selected=true]");
 
 const getTheIndexOfTheSelectedElement = current => {
   const currentElement = current || getCurrentElement();
+  console.log(
+    "Current index:" + parseInt(currentElement.getAttribute("nav-index"))
+  );
   return currentElement
     ? parseInt(currentElement.getAttribute("nav-index"))
     : 0;
