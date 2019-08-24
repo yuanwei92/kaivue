@@ -68,6 +68,7 @@ export default {
 
       const selectedElement = allElements[0];
       selectedElement.setAttribute("nav-selected", "true");
+      document.querySelector(".kai-option-menu").focus();
     },
 
     getAllElements() {
@@ -86,6 +87,7 @@ export default {
       switch (event.key) {
         case "Enter":
           self.$emit("on-select", this.options[currentIndex]);
+          event.stopPropagation();
           break;
 
         case "ArrowUp":
