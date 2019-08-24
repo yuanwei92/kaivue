@@ -149,15 +149,15 @@ export default {
       );
       const rect = element.getBoundingClientRect();
 
-      if (rect.top < window.innerHeight - listElement.clientHeight) {
+      if (rect.top <= window.innerHeight - listElement.clientHeight) {
         let moveUp = rect.top - window.innerHeight - listElement.clientHeight;
         listElement.scrollBy({
           top: moveUp
         });
       }
 
-      if (rect.bottom > window.innerHeight) {
-        let moveDown = rect.bottom - window.innerHeight + 28;
+      if (rect.bottom >= window.innerHeight) {
+        let moveDown = rect.bottom - window.innerHeight + 60;
         listElement.scrollBy({
           top: moveDown
         });
@@ -215,9 +215,9 @@ export default {
 
     &__list {
       background-color: white;
-      max-height: 21rem;
+      max-height: @option-menu-list-max-height;
       overflow: scroll;
-      padding-bottom: @dialog-title-height;
+      margin-bottom: @software-key-height;
 
       &__item {
         font-size: @primary-text-size;
@@ -239,8 +239,8 @@ export default {
       text-align: center;
       font-size: @secondary-text-size;
       background-color: @dialog-title-background-color;
-      height: @dialog-title-height;
-      line-height: @dialog-title-height;
+      height: @software-key-height;
+      line-height: @software-key-height;
       position: fixed;
       bottom: 0;
       left: 0;
