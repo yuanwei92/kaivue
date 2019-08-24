@@ -8,6 +8,7 @@ import List from "./views/List.vue";
 import Separator from "./views/Separator.vue";
 import Progress from "./views/Progress.vue";
 import Dialog from "./views/Dialog.vue";
+import Toast from "./views/Toast.vue";
 
 Vue.use(Router);
 
@@ -52,6 +53,11 @@ export default new Router({
       path: "/dialog",
       name: "dialog",
       component: Dialog
+    },
+    {
+      path: "/toast",
+      name: "toast",
+      component: Toast
     }
   ]
 });
