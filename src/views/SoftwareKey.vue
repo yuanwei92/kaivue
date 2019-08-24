@@ -9,21 +9,69 @@
 
     <kai-software-key
       left-key="Left"
-      middle-key="Middle"
-      right-key="Right"
+      middle-key="MIDDLE"
+      right-key="Back"
     ></kai-software-key>
+
+    <kai-toast v-if="isToastShown" :message="toastMessage" />
   </div>
 </template>
 
 <script>
-import { KaiHeader, KaiSoftwareKey } from "@/components";
+import { KaiHeader, KaiSoftwareKey, KaiToast } from "@/components";
 
 export default {
   name: "SoftwareKey",
 
   components: {
     KaiHeader,
-    KaiSoftwareKey
+    KaiSoftwareKey,
+    KaiToast
+  },
+
+  data() {
+    return {
+      isToastShown: false,
+      toastMessage: ""
+    };
+  },
+
+  mounted() {
+    document.addEventListener("keydown", this.onKeyDown);
+  },
+
+  beforeDestroy() {
+    document.removeEventListener("keydown", this.onKeyDown);
+  },
+
+  methods: {
+    onKeyDown(event) {
+      switch (event.key) {
+        case "SoftLeft":
+          this.showToast("Left key pressed");
+          break;
+
+        case "Enter":
+          this.showToast("Middle key pressed!");
+          break;
+
+        case "SoftRight":
+          this.$router.back();
+          break;
+
+        default:
+          break;
+      }
+    },
+
+    showToast(message) {
+      this.isToastShown = true;
+      this.toastMessage = message;
+      const self = this;
+      setTimeout(function() {
+        self.isToastShown = false;
+      }, 3000);
+    }
   }
 };
 </script>
